@@ -15,6 +15,9 @@ Make sure to have Docker installed on your machine.
 docker compose up -d
 ```
 
+All the dependencies will be installed through compose.
+don't forget to create your own `.env` file as the .env.example is shown.
+
 ### Frontend
 
 not implemented yet.

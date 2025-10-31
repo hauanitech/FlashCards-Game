@@ -5,7 +5,6 @@
 ### High :
 
 - Configure Compose file
-- Review Auth system
 - Review User tables ( à voir si des champs sont à redéfinir pour les users en lien avec les flashcards )
 
 ### Medium
