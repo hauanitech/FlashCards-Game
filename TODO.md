@@ -1,15 +1,18 @@
 # Priorities :
-## High :
 
+## Backend
+
+### High :
+
+- Configure Compose file
 - Review Auth system
 - Review User tables ( à voir si des champs sont à redéfinir pour les users en lien avec les flashcards )
 
-## Medium
+### Medium
 
 - Implement FlashCard/Lessons/Subjects features with basic CRUD Operations
-- 
 
-## Low
+### Low
 
 - Implement Friend features
 - Implement Share feature
