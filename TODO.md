@@ -4,15 +4,13 @@
 
 ### High :
 
-- Configure Compose file
-- Review User tables ( à voir si des champs sont à redéfinir pour les users en lien avec les flashcards )
+- Implement FlashCard/Lessons/Subjects features with basic CRUD Operations
 
 ### Medium
 
-- Implement FlashCard/Lessons/Subjects features with basic CRUD Operations
+- Implement Friend features
+- Implement Share feature
 
 ### Low
 
-- Implement Friend features
-- Implement Share feature
 - Create unit tests for each routes
