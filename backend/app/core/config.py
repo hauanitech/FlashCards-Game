@@ -7,7 +7,7 @@ load_dotenv()
 
 
 """ENV VAR"""
-DB_URL = os.getenv("DB_URL")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 JWT_KEY = os.getenv("JWT_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
