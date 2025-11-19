@@ -1,4 +1,5 @@
 import uuid
+import time
 
 from datetime import datetime
 from fastapi import FastAPI
@@ -12,11 +13,31 @@ from core.config import SUPERUSER_USERNAME, SUPERUSER_PASSWORD
 
 
 app = FastAPI()
-Base.metadata.create_all(bind=engine)
 
 
 app.include_router(api_router)
 app.include_router(superuser_router)
+
+
+@app.on_event("startup")
+def startup_event():
+    """Initialize database and create superuser on startup"""
+    max_retries = 5
+    retry_delay = 2
+    
+    for attempt in range(max_retries):
+        try:
+            Base.metadata.create_all(bind=engine)
+            create_superuser()
+            print("Database initialized successfully")
+            break
+        except Exception as e:
+            if attempt < max_retries - 1:
+                print(f"Database connection failed (attempt {attempt + 1}/{max_retries}), retrying in {retry_delay}s...")
+                time.sleep(retry_delay)
+            else:
+                print(f"Failed to initialize database after {max_retries} attempts: {e}")
+                raise
 
 
 @app.get("/")
@@ -47,7 +68,5 @@ def create_superuser():
 
     Session.add(db_super)
     Session.commit()
+    Session.close()
     return {"data": "Superuser Created Successfully"}
-
-
-create_superuser()  # generates superuser on backend startup
