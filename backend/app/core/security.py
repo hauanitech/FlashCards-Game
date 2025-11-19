@@ -79,3 +79,13 @@ SessionDep = Annotated[Session, Depends(get_db)]
 UserDep = Annotated[dict, Depends(get_current_user)]
 SuperDep = Annotated[dict, Depends(get_superuser)]
 AdminDep = Annotated[dict, Depends(get_admin)]
+
+
+def is_owner(User: UserDep, Data, Session: SessionDep):
+    user = Session.query(Users).filter(Users.id == uuid.UUID(User["id"])).first()
+
+    if uuid.UUID(User["id"]) != Data.created_by and (
+        not user.is_admin and not user.is_superuser
+    ):
+        return False
+    return True

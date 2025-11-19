@@ -14,7 +14,10 @@ class FlashCardBase(BaseModel):
     verso: str = Field(min_length=1, max_length=30)
     is_public: bool = Field(default=True)
     lesson_ids: List[uuid.UUID] = Field(default_factory=list)
-    shared_with_users: List[uuid.UUID] = Field(default_factory=list, description="Liste des IDs d'utilisateurs avec qui la flashcard est partagée")
+    shared_with_users: List[uuid.UUID] = Field(
+        default_factory=list,
+        description="Liste des IDs d'utilisateurs avec qui la flashcard est partagée",
+    )
 
 
 class FlashCards(TableBase):
