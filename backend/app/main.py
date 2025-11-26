@@ -24,7 +24,7 @@ def startup_event():
     """Initialize database and create superuser on startup"""
     max_retries = 5
     retry_delay = 2
-    
+
     for attempt in range(max_retries):
         try:
             Base.metadata.create_all(bind=engine)
@@ -33,10 +33,14 @@ def startup_event():
             break
         except Exception as e:
             if attempt < max_retries - 1:
-                print(f"Database connection failed (attempt {attempt + 1}/{max_retries}), retrying in {retry_delay}s...")
+                print(
+                    f"Database connection failed (attempt {attempt + 1}/{max_retries}), retrying in {retry_delay}s..."
+                )
                 time.sleep(retry_delay)
             else:
-                print(f"Failed to initialize database after {max_retries} attempts: {e}")
+                print(
+                    f"Failed to initialize database after {max_retries} attempts: {e}"
+                )
                 raise
 
 
